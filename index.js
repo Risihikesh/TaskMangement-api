@@ -1,16 +1,17 @@
 const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
+// const mongoose = require('mongoose');
+// require('dotenv').config();
 const cors = require('cors');
-const routes = require('./routes.js')
+const routes = require('./routes/routes.js')
 
 const app = express();
-const PORT = process.env.PORT;
-const MONGO_URI = process.env.MONGO_URI;
+const PORT = 6000;
+// const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI)
-        .then(res => console.log('Database connected'))
-        .catch(err => console.log(err));
+const db = require('./config/db');
+
+
+
 
 app.use(cors({
     origin: '*',

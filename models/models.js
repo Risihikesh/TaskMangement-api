@@ -13,9 +13,23 @@ const UserSchema = Schema({
   password: String,
 });
 
+const TaskSchema = Schema({
+  title: String,
+  description: String,
+  admin_id: Schema.Types.ObjectId,
+  assigned_users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  due_date: Date,
+  finished_date: Date,
+  status: String,
+});
+
 const Admin = mongoose.model("admins", AdminSchema);
 const User = mongoose.model("users", UserSchema);
+const Task = mongoose.model("tasks", TaskSchema);
 
-
-
-module.exports = { User, Admin };
+module.exports = { User, Task, Admin };
